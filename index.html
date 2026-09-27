@@ -12,7 +12,7 @@
 
   <!-- کتابخانه‌های KaTeX و Marked -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivGAPGPTMASKTOKENec93ohe2hvX0X.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
@@ -21,9 +21,9 @@
       --bg-main: #0B0E17;
       --bg-card: rgba(19, 24, 38, 0.85);
       --bg-sidebar: #0f1322;
-      --accGAPGPTMASKTOKENec93ohe2hvX1Xnt-purple: #8B5CF6;
+      --accent-purple: #8B5CF6;
       --accent-cyan: #06B6D4;
-      --aGAPGPTMASKTOKENec93ohe2hvX2Xcent-pink: #EC4899;
+      --accent-pink: #EC4899;
       --accent-amber: #F59E0B;
       --border-glow: rgba(139, 92, 246, 0.25);
       --text-main: #E2E8F0;
@@ -31,7 +31,12 @@
       --code-bg: #161B2E;
     }
 
-    * { box-sizing: border-box; margGAPGPTMASKTOKENec93ohe2hvX3Xn: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Vazirmatn', sans-serif;
       background-color: var(--bg-main);
@@ -41,7 +46,7 @@
       overflow: hidden;
     }
 
-    /* سایدبار ناوبریGAPGPTMASKTOKENec93ohe2hvX4X*/
+    /* سایدبار ناوبری */
     aside {
       width: 320px;
       background: var(--bg-sidebar);
@@ -56,7 +61,7 @@
     .brand {
       font-size: 1.35rem;
       font-weight: 900;
-      background: linear-gradiGAPGPTMASKTOKENec93ohe2hvX5Xnt(135deg, var(--accent-purple), var(--accent-cyan));
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       cursor: pointer;
@@ -67,30 +72,33 @@
 
     .search-box input {
       width: 100%;
-      background: GAPGPTMASKTOKENec93ohe2hvX6Xar(--code-bg);
-      border: 1px solid rgba(255, 255GAPGPTMASKTOKENec93ohe2hvX7X 255, 0.1);
+      background: var(--code-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       padding: 0.6rem 0.8rem;
       color: #fff;
       font-family: inherit;
-      outline: none;GAPGPTMASKTOKENec93ohe2hvX8X      transition: border 0.2s;
+      outline: none;
+      transition: border 0.2s;
     }
-    .search-box input:focus { border-color: var(--accent-cyan); }
+    .search-box input:focus {
+      border-color: var(--accent-cyan);
+    }
 
     .tree-nav {
       overflow-y: auto;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0GAPGPTMASKTOKENec93ohe2hvX9X8rem;
+      gap: 0.8rem;
     }
 
     .course-title {
       font-size: 0.88rem;
       font-weight: 800;
       color: var(--accent-cyan);
-      padding-bottGAPGPTMASKTOKENec93ohe2hvX10Xm: 0.3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       margin-bottom: 0.4rem;
     }
 
@@ -102,17 +110,17 @@
     }
 
     .nav-item {
-      GAPGPTMASKTOKENec93ohe2hvX11Xadding: 0.5rem 0.8rem;
+      padding: 0.5rem 0.8rem;
       border-radius: 6px;
       cursor: pointer;
       color: var(--text-muted);
       font-size: 0.88rem;
       transition: all 0.2s;
- GAPGPTMASKTOKENec93ohe2hvX12X    margin-right: 0.5rem;
+      margin-right: 0.5rem;
       line-height: 1.4;
     }
     .nav-item:hover, .nav-item.active {
-      background: rgba(GAPGPTMASKTOKENec93ohe2hvX13X39, 92, 246, 0.18);
+      background: rgba(139, 92, 246, 0.18);
       color: #fff;
       border-right: 3px solid var(--accent-purple);
     }
@@ -122,19 +130,23 @@
       flex: 1;
       overflow-y: auto;
       padding: 2.5rem 3.5rem;
-      posGAPGPTMASKTOKENec93ohe2hvX14Xtion: relative;
+      position: relative;
     }
 
     .header-bar {
-      display: fGAPGPTMASKTOKENec93ohe2hvX15Xex;
+      display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       padding-bottom: 1rem;
-    GAPGPTMASKTOKENec93ohe2hvX16X
+    }
 
-    .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
     .tag {
       background: rgba(6, 182, 212, 0.15);
       color: var(--accent-cyan);
@@ -145,10 +157,10 @@
 
     .action-btn {
       background: var(--code-bg);
-      bGAPGPTMASKTOKENec93ohe2hvX17Xrder: 1px solid var(--border-glow);
+      border: 1px solid var(--border-glow);
       color: var(--text-main);
       padding: 0.45rem 0.85rem;
-      border-GAPGPTMASKTOKENec93ohe2hvX18Xadius: 6px;
+      border-radius: 6px;
       cursor: pointer;
       font-family: inherit;
       font-size: 0.85rem;
@@ -161,12 +173,12 @@
 
     /* داشبورد اصلی */
     .dashboard-title {
-   GAPGPTMASKTOKENec93ohe2hvX19X  font-size: 2.2rem;
+      font-size: 2.2rem;
       font-weight: 900;
       margin-bottom: 0.5rem;
-      baGAPGPTMASKTOKENec93ohe2hvX20Xkground: linear-gradient(135deg, #fff, var(--accent-cyan));
+      background: linear-gradient(135deg, #fff, var(--accent-cyan));
       -webkit-background-clip: text;
-      -webkit-text-fill-color: tranGAPGPTMASKTOKENec93ohe2hvX21Xparent;
+      -webkit-text-fill-color: transparent;
     }
     .dashboard-subtitle {
       color: var(--text-muted);
@@ -176,26 +188,33 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
-   GAPGPTMASKTOKENec93ohe2hvX22X}
+    }
     .course-card {
       background: var(--bg-card);
       border: 1px solid var(--border-glow);
-   GAPGPTMASKTOKENec93ohe2hvX23X  border-radius: 12px;
+      border-radius: 12px;
       padding: 1.5rem;
-      cursorGAPGPTMASKTOKENec93ohe2hvX24X pointer;
+      cursor: pointer;
       transition: transform 0.2s, border-color 0.2s;
     }
-    .course-card:hoveGAPGPTMASKTOKENec93ohe2hvX25X {
+    .course-card:hover {
       transform: translateY(-4px);
       border-color: var(--accent-cyan);
     }
-    .course-card h3 { color: #fff; margin-bottom: 0.5rem; }
-    .course-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+    .course-card h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .course-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
     .course-card .badge {
-      display:GAPGPTMASKTOKENec93ohe2hvX26Xinline-block;
+      display: inline-block;
       margin-top: 1rem;
       background: rgba(139, 92, 246, 0.2);
-      color: var(--accGAPGPTMASKTOKENec93ohe2hvX27Xnt-purple);
+      color: var(--accent-purple);
       padding: 0.25rem 0.65rem;
       border-radius: 20px;
       font-size: 0.75rem;
@@ -204,33 +223,48 @@
     /* محتوای علمی مقاله */
     .article-body {
       max-width: 900px;
-      liGAPGPTMASKTOKENec93ohe2hvX28Xe-height: 1.95;
+      line-height: 1.95;
       font-size: 1.05rem;
     }
     .article-body h1 {
-      font-size: 2.1remGAPGPTMASKTOKENec93ohe2hvX29X
+      font-size: 2.1rem;
       color: #fff;
       margin: 1.5rem 0 1rem;
-      border-bottom: 2px solid var(--accent-pGAPGPTMASKTOKENec93ohe2hvX30Xrple);
+      border-bottom: 2px solid var(--accent-purple);
       padding-bottom: 0.4rem;
     }
-    .article-body h2 {GAPGPTMASKTOKENec93ohe2hvX31Xfont-size: 1.45rem; color: var(--accent-cyan); margin: 2rem 0 0.8rem;GAPGPTMASKTOKENec93ohe2hvX32X}
-    .article-body h3 { font-size: 1.2rem; color: var(--accent-pinGAPGPTMASKTOKENec93ohe2hvX33X); margin: 1.5rem 0 0.6rem; }
-    .article-body p { margin-bottom: 1.2rem; }
-    .article-body ul, .article-body ol { margin-right: 1.5rem; margin-bottom: 1.2rem; }
-    .article-body li { margin-bottom: 0.4GAPGPTMASKTOKENec93ohe2hvX34Xem; }
+    .article-body h2 {
+      font-size: 1.45rem;
+      color: var(--accent-cyan);
+      margin: 2rem 0 0.8rem;
+    }
+    .article-body h3 {
+      font-size: 1.2rem;
+      color: var(--accent-pink);
+      margin: 1.5rem 0 0.6rem;
+    }
+    .article-body p {
+      margin-bottom: 1.2rem;
+    }
+    .article-body ul, .article-body ol {
+      margin-right: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .article-body li {
+      margin-bottom: 0.4rem;
+    }
 
     /* جداول */
     .article-body table {
       width: 100%;
       border-collapse: collapse;
       margin: 1.5rem 0;
-      bGAPGPTMASKTOKENec93ohe2hvX35Xckground: var(--code-bg);
+      background: var(--code-bg);
       border-radius: 8px;
       overflow: hidden;
     }
     .article-body th, .article-body td {
-      border: 1px solid rgba(255, 25GAPGPTMASKTOKENec93ohe2hvX36X, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 0.8rem 1rem;
       text-align: right;
     }
@@ -239,22 +273,28 @@
       color: var(--accent-cyan);
     }
 
-    /* بلاک‌کوت‌ها (باکس‌های نکته و هشدار) */
+    /* باکس‌های نکته و هشدار */
     .article-body blockquote {
-      bGAPGPTMASKTOKENec93ohe2hvX37Xckground: rgba(139, 92, 246, 0.08);
-      border-right: 4px solid var(GAPGPTMASKTOKENec93ohe2hvX38X-accent-purple);
+      background: rgba(139, 92, 246, 0.08);
+      border-right: 4px solid var(--accent-purple);
       padding: 1rem 1.2rem;
-      border-radius: 0 8pxGAPGPTMASKTOKENec93ohe2hvX39X8px 0;
+      border-radius: 0 8px 8px 0;
       margin: 1.5rem 0;
       color: #F1F5F9;
     }
 
     /* فرمول‌های ریاضی KaTeX */
-    .katex-display { direction: ltr !important; margin: 1.GAPGPTMASKTOKENec93ohe2hvX40Xrem 0 !importGAPGPTMASKTOKENec93ohe2hvX41Xnt; }
-    .katex { direction:GAPGPTMASKTOKENec93ohe2hvX42Xltr !important; font-size:GAPGPTMASKTOKENec93ohe2hvX43X1.15em; }
+    .katex-display {
+      direction: ltr !important;
+      margin: 1.2rem 0 !important;
+    }
+    .katex {
+      direction: ltr !important;
+      font-size: 1.15em;
+    }
 
     .loading-spinner {
-      color: var(--aGAPGPTMASKTOKENec93ohe2hvX44Xcent-cyan);
+      color: var(--accent-cyan);
       font-size: 1.1rem;
       display: flex;
       align-items: center;
@@ -286,7 +326,7 @@
   <main id="mainContainer">
     <div class="header-bar" id="headerBar" style="display: none;">
       <div class="tags" id="sessionTags"></div>
-     GAPGPTMASKTOKENec93ohe2hvX45X<div>
+      <div>
         <button class="action-btn" onclick="window.print()">🖨️ خروجی PDF / چاپ</button>
       </div>
     </div>
@@ -295,22 +335,22 @@
   </main>
 
   <script>
-    //GAPGPTMASKTOKENec93ohe2hvX46Xپایگاه داده جلسات (مسیر فایل‌ها در ریشه مخزن)
+    // پایگاه داده جلسات فیزیک ۱
     const database = [
       {
-        courseId: GAPGPTMASKTOKENec93ohe2hvX47Xphysics1",
+        courseId: "physics1",
         courseName: "فیزیک دانشگاهی ۱",
         description: "مکانیک کلاسیک، بردارها، سینماتیک، دینامیک، کار و انرژی",
-    GAPGPTMASKTOKENec93ohe2hvX48X   topics: [
+        topics: [
           {
             topicName: "فصل ۱: بردارها و ریاضیات پایه",
             sessions: [
-              { id: "p1-s1",GAPGPTMASKTOKENec93ohe2hvX49Xtitle: "جلسه ۱: یکاها و دیمانسیون", file: "phys1-session1.md", tags: ["فیزیک ۱", "یکاها", "دیمانسیون"] },
-              { id: "p1-GAPGPTMASKTOKENec93ohe2hvX50X2", title: "جلسه ۲: دستگاه دکارتی و قطبی", file: "phys1-session2.md", tags: ["فیزیک ۱", "دکارتی", "قطبی"] },
-              { id: "pGAPGPTMASKTOKENec93ohe2hvX51X-s3", title: "جلسه ۳: جمع هندسی و مؤلفه‌ای", file: "phys1-session3.md", tags: ["فیزیک ۱", "جمع بردارها"] },
-              { id: "p1-s4", title:GAPGPTMASKTOKENec93ohe2hvX52X"جلسه ۴: ضرب داخلی (Dot Product)", file: "phys1-session4.md", tags: ["فیزیک ۱", "ضرب داخلی"] },
-              { id: "p1-s5", title: "جلسه GAPGPTMASKTOKENec93ohe2hvX53X: ضرب خارجی (Cross Product)", file: "phys1-session5.md", tags: ["فیزیک ۱", "ضرب خارجی", "گشتاور"] },
-              { id: "p1-s6", title: "جلسه ۶: مسائل ترکیبی و تحلیلی", file: "phys1-session6.md", tags: ["فیزیک GAPGPTMASKTOKENec93ohe2hvX54X", "حل مسئله", "ترکیبی"] },
+              { id: "p1-s1", title: "جلسه ۱: یکاها و دیمانسیون", file: "phys1-session1.md", tags: ["فیزیک ۱", "یکاها", "دیمانسیون"] },
+              { id: "p1-s2", title: "جلسه ۲: دستگاه دکارتی و قطبی", file: "phys1-session2.md", tags: ["فیزیک ۱", "دکارتی", "قطبی"] },
+              { id: "p1-s3", title: "جلسه ۳: جمع هندسی و مؤلفه‌ای", file: "phys1-session3.md", tags: ["فیزیک ۱", "جمع بردارها"] },
+              { id: "p1-s4", title: "جلسه ۴: ضرب داخلی (Dot Product)", file: "phys1-session4.md", tags: ["فیزیک ۱", "ضرب داخلی"] },
+              { id: "p1-s5", title: "جلسه ۵: ضرب خارجی (Cross Product)", file: "phys1-session5.md", tags: ["فیزیک ۱", "ضرب خارجی", "گشتاور"] },
+              { id: "p1-s6", title: "جلسه ۶: مسائل ترکیبی و تحلیلی", file: "phys1-session6.md", tags: ["فیزیک ۱", "حل مسئله", "ترکیبی"] },
               { id: "p1-s7", title: "جلسه ۷: جمع‌بندی، جدول قوانین و خطاها", file: "phys1-session7.md", tags: ["فیزیک ۱", "خلاصه", "دام تستی"] }
             ]
           }
@@ -321,7 +361,7 @@
     function showDashboard() {
       document.getElementById('headerBar').style.display = 'none';
       const viewArea = document.getElementById('viewArea');
-  GAPGPTMASKTOKENec93ohe2hvX55X   let html = `
+      let html = `
         <div class="dashboard-title">📚 پایگاه دانش ZoryaJourney</div>
         <div class="dashboard-subtitle">سامانه یکپارچه و اسکرولی جزوات تخصصی دانشگاهی</div>
         <div class="cards-grid">
@@ -333,12 +373,12 @@
           <div class="course-card" onclick="loadSession(database[0].topics[0].sessions[0])">
             <h3>${course.courseName}</h3>
             <p>${course.description}</p>
-            <span class="badge">�GAPGPTMASKTOKENec93ohe2hvX56X ${count} جلسه آماده مطالعه</span>
+            <span class="badge">📖 ${count} جلسه آماده مطالعه</span>
           </div>
         `;
       });
       html += `</div>`;
-      viewArea.innerHTML GAPGPTMASKTOKENec93ohe2hvX57X html;
+      viewArea.innerHTML = html;
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     }
 
@@ -346,13 +386,13 @@
       const treeNav = document.getElementById('treeNav');
       treeNav.innerHTML = '';
       database.forEach(course => {
-        const group = doGAPGPTMASKTOKENec93ohe2hvX58Xument.createElement('div');
+        const group = document.createElement('div');
         const cTitle = document.createElement('div');
         cTitle.className = 'course-title';
         cTitle.innerText = '📁 ' + course.courseName;
         group.appendChild(cTitle);
 
-        course.topics.GAPGPTMASKTOKENec93ohe2hvX59XorEach(topic => {
+        course.topics.forEach(topic => {
           const tTitle = document.createElement('div');
           tTitle.className = 'topic-title';
           tTitle.innerText = '▫️ ' + topic.topicName;
@@ -362,7 +402,7 @@
             const sItem = document.createElement('div');
             sItem.className = 'nav-item';
             sItem.id = `nav-${session.id}`;
-   GAPGPTMASKTOKENec93ohe2hvX60X        sItem.innerText = session.title;
+            sItem.innerText = session.title;
             sItem.onclick = () => loadSession(session);
             group.appendChild(sItem);
           });
@@ -371,14 +411,14 @@
       });
     }
 
-    async function loadGAPGPTMASKTOKENec93ohe2hvX61Xession(session) {
+    async function loadSession(session) {
       document.getElementById('headerBar').style.display = 'flex';
       const viewArea = document.getElementById('viewArea');
       viewArea.innerHTML = `<div class="loading-spinner">⏳ در حال بارگذاری محتوای جلسه...</div>`;
 
       try {
-        const response = await fetch(session.fileGAPGPTMASKTOKENec93ohe2hvX62X;
-        if (!response.ok) throw new ErrGAPGPTMASKTOKENec93ohe2hvX63Xr('فایل یافت نشد');
+        const response = await fetch(session.file);
+        if (!response.ok) throw new Error('فایل یافت نشد');
         const mdText = await response.text();
         
         viewArea.innerHTML = `<article class="article-body">${marked.parse(mdText)}</article>`;
@@ -394,14 +434,14 @@
         }
 
         const tagsContainer = document.getElementById('sessionTags');
-        tagsContainer.innerHTML = session.tags.map(t => `<span class="tag">${t}</span>GAPGPTMASKTOKENec93ohe2hvX64X).join('');
+        tagsContainer.innerHTML = session.tags.map(t => `<span class="tag">${t}</span>`).join('');
 
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         const activeEl = document.getElementById(`nav-${session.id}`);
-        if (activeEl) activeEl.claGAPGPTMASKTOKENec93ohe2hvX65XsList.add('active');
+        if (activeEl) activeEl.classList.add('active');
 
       } catch (err) {
-        viewArea.innerHTML = `<div style="color: #ef4444; line-height: 1.8;">⚠️ خطا در بارگذGAPGPTMASKTOKENec93ohe2hvX66Xری جلسه.<br>فایل <code>${session.file}</code> در مخزن یافت نشد.</div>`;
+        viewArea.innerHTML = `<div style="color: #ef4444; line-height: 1.8;">⚠️ خطا در بارگذاری جلسه.<br>فایل <code>${session.file}</code> در مخزن یافت نشد.</div>`;
       }
     }
 
@@ -412,6 +452,7 @@
       });
     }
 
+    // مقداردهی اولیه
     renderTree();
     showDashboard();
   </script>
