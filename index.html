@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZoryaJourney | سامانه مدیریت دروس</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZoryaJourney | پایگاه دانش علمی</title>
 
   <!-- فونت Vazirmatn -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-  <!-- کتابخانه‌های پردازش فرمول KaTeX و Marked -->
+  <!-- کتابخانه‌های KaTeX و Marked -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivGAPGPTMASKTOKENec93ohe2hvX0X.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
     :root {
       --bg-main: #0B0E17;
-      --bg-card: rgba(19, 24, 38, 0.75);
+      --bg-card: rgba(19, 24, 38, 0.85);
       --bg-sidebar: #0f1322;
-      --accent-purple: #8B5CF6;
+      --accGAPGPTMASKTOKENec93ohe2hvX1Xnt-purple: #8B5CF6;
       --accent-cyan: #06B6D4;
-      --accent-pink: #EC4899;
+      --aGAPGPTMASKTOKENec93ohe2hvX2Xcent-pink: #EC4899;
+      --accent-amber: #F59E0B;
       --border-glow: rgba(139, 92, 246, 0.25);
       --text-main: #E2E8F0;
       --text-muted: #94A3B8;
       --code-bg: #161B2E;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margGAPGPTMASKTOKENec93ohe2hvX3Xn: 0; padding: 0; }
     body {
       font-family: 'Vazirmatn', sans-serif;
       background-color: var(--bg-main);
@@ -40,7 +41,7 @@
       overflow: hidden;
     }
 
-    /* سایدبار */
+    /* سایدبار ناوبریGAPGPTMASKTOKENec93ohe2hvX4X*/
     aside {
       width: 320px;
       background: var(--bg-sidebar);
@@ -53,9 +54,9 @@
     }
 
     .brand {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 900;
-      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      background: linear-gradiGAPGPTMASKTOKENec93ohe2hvX5Xnt(135deg, var(--accent-purple), var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       cursor: pointer;
@@ -66,98 +67,88 @@
 
     .search-box input {
       width: 100%;
-      background: var(--code-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: GAPGPTMASKTOKENec93ohe2hvX6Xar(--code-bg);
+      border: 1px solid rgba(255, 255GAPGPTMASKTOKENec93ohe2hvX7X 255, 0.1);
       border-radius: 8px;
       padding: 0.6rem 0.8rem;
       color: #fff;
       font-family: inherit;
-      outline: none;
-      transition: border 0.2s;
+      outline: none;GAPGPTMASKTOKENec93ohe2hvX8X      transition: border 0.2s;
     }
-    .search-box input:focus {
-      border-color: var(--accent-cyan);
-    }
+    .search-box input:focus { border-color: var(--accent-cyan); }
 
     .tree-nav {
       overflow-y: auto;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .course-group {
-      margin-bottom: 0.6rem;
+      gap: 0GAPGPTMASKTOKENec93ohe2hvX9X8rem;
     }
 
     .course-title {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 800;
       color: var(--accent-cyan);
-      padding: 0.3rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottGAPGPTMASKTOKENec93ohe2hvX10Xm: 0.3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       margin-bottom: 0.4rem;
     }
 
     .topic-title {
       font-size: 0.8rem;
       color: var(--accent-pink);
-      padding: 0.2rem 0.5rem;
-      font-weight: 600;
+      padding: 0.2rem 0.4rem;
+      font-weight: 700;
     }
 
     .nav-item {
-      padding: 0.45rem 0.8rem;
+      GAPGPTMASKTOKENec93ohe2hvX11Xadding: 0.5rem 0.8rem;
       border-radius: 6px;
       cursor: pointer;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       transition: all 0.2s;
-      margin-right: 0.5rem;
+ GAPGPTMASKTOKENec93ohe2hvX12X    margin-right: 0.5rem;
+      line-height: 1.4;
     }
     .nav-item:hover, .nav-item.active {
-      background: rgba(139, 92, 246, 0.15);
+      background: rgba(GAPGPTMASKTOKENec93ohe2hvX13X39, 92, 246, 0.18);
       color: #fff;
       border-right: 3px solid var(--accent-purple);
     }
 
-    /* محتوای اصلی */
+    /* فضای محتوای اصلی */
     main {
       flex: 1;
       overflow-y: auto;
       padding: 2.5rem 3.5rem;
-      position: relative;
+      posGAPGPTMASKTOKENec93ohe2hvX14Xtion: relative;
     }
 
     .header-bar {
-      display: flex;
+      display: fGAPGPTMASKTOKENec93ohe2hvX15Xex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 2rem;
       border-bottom: 1px solid rgba(255,255,255,0.06);
       padding-bottom: 1rem;
-    }
+    GAPGPTMASKTOKENec93ohe2hvX16X
 
-    .tags {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
+    .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .tag {
       background: rgba(6, 182, 212, 0.15);
       color: var(--accent-cyan);
-      padding: 0.2rem 0.6rem;
+      padding: 0.25rem 0.65rem;
       border-radius: 4px;
       font-size: 0.8rem;
     }
 
     .action-btn {
       background: var(--code-bg);
-      border: 1px solid var(--border-glow);
+      bGAPGPTMASKTOKENec93ohe2hvX17Xrder: 1px solid var(--border-glow);
       color: var(--text-main);
       padding: 0.45rem 0.85rem;
-      border-radius: 6px;
+      border-GAPGPTMASKTOKENec93ohe2hvX18Xadius: 6px;
       cursor: pointer;
       font-family: inherit;
       font-size: 0.85rem;
@@ -168,142 +159,135 @@
       color: white;
     }
 
-    /* صفحه داشبورد خانه */
+    /* داشبورد اصلی */
     .dashboard-title {
-      font-size: 2rem;
+   GAPGPTMASKTOKENec93ohe2hvX19X  font-size: 2.2rem;
       font-weight: 900;
       margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #fff, var(--accent-cyan));
+      baGAPGPTMASKTOKENec93ohe2hvX20Xkground: linear-gradient(135deg, #fff, var(--accent-cyan));
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-text-fill-color: tranGAPGPTMASKTOKENec93ohe2hvX21Xparent;
     }
     .dashboard-subtitle {
       color: var(--text-muted);
       margin-bottom: 2rem;
     }
-
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
+   GAPGPTMASKTOKENec93ohe2hvX22X}
     .course-card {
       background: var(--bg-card);
       border: 1px solid var(--border-glow);
-      border-radius: 12px;
+   GAPGPTMASKTOKENec93ohe2hvX23X  border-radius: 12px;
       padding: 1.5rem;
-      cursor: pointer;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
+      cursorGAPGPTMASKTOKENec93ohe2hvX24X pointer;
+      transition: transform 0.2s, border-color 0.2s;
     }
-    .course-card:hover {
+    .course-card:hoveGAPGPTMASKTOKENec93ohe2hvX25X {
       transform: translateY(-4px);
       border-color: var(--accent-cyan);
-      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.15);
     }
-    .course-card h3 {
-      font-size: 1.3rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .course-card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
+    .course-card h3 { color: #fff; margin-bottom: 0.5rem; }
+    .course-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
     .course-card .badge {
-      display: inline-block;
+      display:GAPGPTMASKTOKENec93ohe2hvX26Xinline-block;
       margin-top: 1rem;
       background: rgba(139, 92, 246, 0.2);
-      color: var(--accent-purple);
-      padding: 0.2rem 0.6rem;
+      color: var(--accGAPGPTMASKTOKENec93ohe2hvX27Xnt-purple);
+      padding: 0.25rem 0.65rem;
       border-radius: 20px;
       font-size: 0.75rem;
-      font-weight: 600;
     }
 
-    /* استایل‌های رندر مارک‌داون */
+    /* محتوای علمی مقاله */
     .article-body {
-      max-width: 880px;
-      line-height: 1.9;
+      max-width: 900px;
+      liGAPGPTMASKTOKENec93ohe2hvX28Xe-height: 1.95;
       font-size: 1.05rem;
     }
     .article-body h1 {
-      font-size: 2.2rem;
+      font-size: 2.1remGAPGPTMASKTOKENec93ohe2hvX29X
       color: #fff;
-      margin-bottom: 1.2rem;
-      border-bottom: 2px solid var(--accent-purple);
-      display: inline-block;
-      padding-bottom: 0.3rem;
+      margin: 1.5rem 0 1rem;
+      border-bottom: 2px solid var(--accent-pGAPGPTMASKTOKENec93ohe2hvX30Xrple);
+      padding-bottom: 0.4rem;
     }
-    .article-body h2 {
-      font-size: 1.5rem;
-      color: var(--accent-cyan);
-      margin: 2rem 0 1rem;
-    }
-    .article-body h3 {
-      font-size: 1.2rem;
-      color: var(--accent-pink);
-      margin: 1.2rem 0 0.6rem;
-    }
+    .article-body h2 {GAPGPTMASKTOKENec93ohe2hvX31Xfont-size: 1.45rem; color: var(--accent-cyan); margin: 2rem 0 0.8rem;GAPGPTMASKTOKENec93ohe2hvX32X}
+    .article-body h3 { font-size: 1.2rem; color: var(--accent-pinGAPGPTMASKTOKENec93ohe2hvX33X); margin: 1.5rem 0 0.6rem; }
     .article-body p { margin-bottom: 1.2rem; }
+    .article-body ul, .article-body ol { margin-right: 1.5rem; margin-bottom: 1.2rem; }
+    .article-body li { margin-bottom: 0.4GAPGPTMASKTOKENec93ohe2hvX34Xem; }
 
-    .note-box {
-      background: rgba(139, 92, 246, 0.08);
-      border-right: 4px solid var(--accent-purple);
-      padding: 1.2rem;
-      border-radius: 0 8px 8px 0;
+    /* جداول */
+    .article-body table {
+      width: 100%;
+      border-collapse: collapse;
       margin: 1.5rem 0;
+      bGAPGPTMASKTOKENec93ohe2hvX35Xckground: var(--code-bg);
+      border-radius: 8px;
+      overflow: hidden;
     }
-    .example-box {
-      background: rgba(6, 182, 212, 0.08);
-      border-right: 4px solid var(--accent-cyan);
-      padding: 1.2rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0;
+    .article-body th, .article-body td {
+      border: 1px solid rgba(255, 25GAPGPTMASKTOKENec93ohe2hvX36X, 255, 0.08);
+      padding: 0.8rem 1rem;
+      text-align: right;
+    }
+    .article-body th {
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--accent-cyan);
     }
 
-    /* ریاضی KaTeX */
-    .katex-display {
-      direction: ltr !important;
-      margin: 1.2rem 0 !important;
+    /* بلاک‌کوت‌ها (باکس‌های نکته و هشدار) */
+    .article-body blockquote {
+      bGAPGPTMASKTOKENec93ohe2hvX37Xckground: rgba(139, 92, 246, 0.08);
+      border-right: 4px solid var(GAPGPTMASKTOKENec93ohe2hvX38X-accent-purple);
+      padding: 1rem 1.2rem;
+      border-radius: 0 8pxGAPGPTMASKTOKENec93ohe2hvX39X8px 0;
+      margin: 1.5rem 0;
+      color: #F1F5F9;
     }
-    .katex {
-      direction: ltr !important;
-      font-size: 1.15em;
+
+    /* فرمول‌های ریاضی KaTeX */
+    .katex-display { direction: ltr !important; margin: 1.GAPGPTMASKTOKENec93ohe2hvX40Xrem 0 !importGAPGPTMASKTOKENec93ohe2hvX41Xnt; }
+    .katex { direction:GAPGPTMASKTOKENec93ohe2hvX42Xltr !important; font-size:GAPGPTMASKTOKENec93ohe2hvX43X1.15em; }
+
+    .loading-spinner {
+      color: var(--aGAPGPTMASKTOKENec93ohe2hvX44Xcent-cyan);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     @media print {
-      aside, .header-bar { display: none; }
-      body { background: white; color: black; }
+      aside { display: none; }
       main { padding: 0; }
+      body { background: white; color: black; }
+      .header-bar { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- سایدبار -->
+  <!-- نوار کناری -->
   <aside>
     <div class="brand" onclick="showDashboard()">
-      <span>✨ ZoryaJourney</span>
+      ✨ ZoryaJourney
     </div>
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="جست‌وجو در تمام جلسات..." oninput="filterSessions()">
+      <input type="text" id="searchInput" placeholder="جستجو در جلسات..." oninput="filterSessions()">
     </div>
-    <div class="tree-nav" id="treeNav"></div>
+    <nav class="tree-nav" id="treeNav"></nav>
   </aside>
 
-  <!-- محتوای اصلی -->
+  <!-- فضای اصلی -->
   <main id="mainContainer">
     <div class="header-bar" id="headerBar" style="display: none;">
       <div class="tags" id="sessionTags"></div>
-      <div style="display: flex; gap: 0.5rem;">
-        <button class="action-btn" onclick="showDashboard()">🏠 صفحه اصلی</button>
-        <button class="action-btn" onclick="window.print()">🖨️ خروجی PDF</button>
-        <button class="action-btn" onclick="copyShareLink()">🔗 اشتراک‌گذاری</button>
+     GAPGPTMASKTOKENec93ohe2hvX45X<div>
+        <button class="action-btn" onclick="window.print()">🖨️ خروجی PDF / چاپ</button>
       </div>
     </div>
 
@@ -311,132 +295,64 @@
   </main>
 
   <script>
-    // پایگاه داده دروس
+    //GAPGPTMASKTOKENec93ohe2hvX46Xپایگاه داده جلسات (مسیر فایل‌ها در ریشه مخزن)
     const database = [
       {
-        courseId: "math1",
-        courseName: "ریاضی عمومی ۱",
-        description: "حساب دیفرانسیل و انتگرال، حد، مشتق، پیوستگی و سری‌ها",
-        topics: [
-          {
-            topicName: "حد و پیوستگی",
-            sessions: [
-              {
-                id: "math1-limits-intro",
-                title: "جلسه ۱: مفهوم شهودی و تعریف دقیق حد",
-                tags: ["ریاضی ۱", "حد", "پیوستگی"],
-                markdown: `# مفهوم حد (Limit)
-
-حد یکی از بنیادین‌ترین ابزارهای ریاضی عمومی و حساب دیفرانسیل است که رفتار یک تابع را زمانی که متغیر به یک مقدار خاص نزدیک می‌شود، بررسی می‌کند.
-
-## تعریف شهودی حد
-می‌گوییم حد تابع $f(x)$ وقتی $x$ به $a$ نزدیک می‌شود برابر با $L$ است:
-
-$$ \\lim_{x \\to a} f(x) = L $$
-
-اگر بتوانیم مقادیر $f(x)$ را با نزدیک کردن کافی $x$ به $a$، به اندازه دلخواه به $L$ نزدیک کنیم.
-
-<div class="note-box">
-💡 **نکته کلیدی:** مقدار حد در نقطه $x = a$ هیچ ارتباطی با مقدار خود تابع در آن نقطه یعنی $f(a)$ ندارد! حتی ممکن است تابع در آن نقطه تعریف نشده باشد.
-</div>
-
-## مثال کاربردی
-تابع کسری زیر را در نظر بگیرید:
-
-$$ f(x) = \\frac{x^2 - 1}{x - 1} $$
-
-این تابع در نقطه $x = 1$ تعریف‌نشده است (مخرج صفر می‌شود). اما برای محاسبه حد:
-
-$$ \\lim_{x \\to 1} \\frac{(x - 1)(x + 1)}{x - 1} = \\lim_{x \\to 1} (x + 1) = 2 $$
-
-<div class="example-box">
-📌 **نتیجه:** با اینکه تابع در $x=1$ تعریف نشده، اما حد آن برابر با **۲** است.
-</div>`
-              }
-            ]
-          }
-        ]
-      },
-      {
-        courseId: "physics1",
+        courseId: GAPGPTMASKTOKENec93ohe2hvX47Xphysics1",
         courseName: "فیزیک دانشگاهی ۱",
-        description: "مکانیک کلاسیک، حرکت‌شناسی، قوانین نیوتون، کار و انرژی",
-        topics: [
+        description: "مکانیک کلاسیک، بردارها، سینماتیک، دینامیک، کار و انرژی",
+    GAPGPTMASKTOKENec93ohe2hvX48X   topics: [
           {
-            topicName: "حرکت‌شناسی (سینماتیک)",
+            topicName: "فصل ۱: بردارها و ریاضیات پایه",
             sessions: [
-              {
-                id: "phys1-kinematics",
-                title: "جلسه ۱: بردار مکان و سرعت لحظه‌ای",
-                tags: ["فیزیک ۱", "سینماتیک", "بردار"],
-                markdown: `# بردار مکان و سرعت لحظه‌ای
-
-در مکانیک کلاسیک، توصیف دقیق حرکت بدون در نظر گرفتن نیروها با سینماتیک انجام می‌شود.
-
-## بردار مکان
-موقعیت ذره در فضا با بردار مکان $\\vec{r}(t)$ مشخص می‌شود:
-$$ \\vec{r}(t) = x(t)\\hat{i} + y(t)\\hat{j} + z(t)\\hat{k} $$
-
-## سرعت لحظه‌ای
-سرعت لحظه‌ای مشتق بردار مکان نسبت به زمان است:
-$$ \\vec{v}(t) = \\frac{d\\vec{r}}{dt} $$`
-              }
+              { id: "p1-s1",GAPGPTMASKTOKENec93ohe2hvX49Xtitle: "جلسه ۱: یکاها و دیمانسیون", file: "phys1-session1.md", tags: ["فیزیک ۱", "یکاها", "دیمانسیون"] },
+              { id: "p1-GAPGPTMASKTOKENec93ohe2hvX50X2", title: "جلسه ۲: دستگاه دکارتی و قطبی", file: "phys1-session2.md", tags: ["فیزیک ۱", "دکارتی", "قطبی"] },
+              { id: "pGAPGPTMASKTOKENec93ohe2hvX51X-s3", title: "جلسه ۳: جمع هندسی و مؤلفه‌ای", file: "phys1-session3.md", tags: ["فیزیک ۱", "جمع بردارها"] },
+              { id: "p1-s4", title:GAPGPTMASKTOKENec93ohe2hvX52X"جلسه ۴: ضرب داخلی (Dot Product)", file: "phys1-session4.md", tags: ["فیزیک ۱", "ضرب داخلی"] },
+              { id: "p1-s5", title: "جلسه GAPGPTMASKTOKENec93ohe2hvX53X: ضرب خارجی (Cross Product)", file: "phys1-session5.md", tags: ["فیزیک ۱", "ضرب خارجی", "گشتاور"] },
+              { id: "p1-s6", title: "جلسه ۶: مسائل ترکیبی و تحلیلی", file: "phys1-session6.md", tags: ["فیزیک GAPGPTMASKTOKENec93ohe2hvX54X", "حل مسئله", "ترکیبی"] },
+              { id: "p1-s7", title: "جلسه ۷: جمع‌بندی، جدول قوانین و خطاها", file: "phys1-session7.md", tags: ["فیزیک ۱", "خلاصه", "دام تستی"] }
             ]
           }
         ]
       }
     ];
 
-    // نمایش صفحه اصلی (داشبورد کارت‌ها)
     function showDashboard() {
       document.getElementById('headerBar').style.display = 'none';
       const viewArea = document.getElementById('viewArea');
-      
-      let html = `
-        <div class="dashboard-title">📚 مرکز یادگیری ZoryaJourney</div>
-        <div class="dashboard-subtitle">سامانه یکپارچه جزوات، فرمول‌ها و مباحث تحلیلی دانشگاه</div>
+  GAPGPTMASKTOKENec93ohe2hvX55X   let html = `
+        <div class="dashboard-title">📚 پایگاه دانش ZoryaJourney</div>
+        <div class="dashboard-subtitle">سامانه یکپارچه و اسکرولی جزوات تخصصی دانشگاهی</div>
         <div class="cards-grid">
       `;
-
       database.forEach(course => {
-        let totalSessions = 0;
-        course.topics.forEach(t => totalSessions += t.sessions.length);
-
+        let count = 0;
+        course.topics.forEach(t => count += t.sessions.length);
         html += `
-          <div class="course-card" onclick="openFirstSessionOfCourse('${course.courseId}')">
+          <div class="course-card" onclick="loadSession(database[0].topics[0].sessions[0])">
             <h3>${course.courseName}</h3>
             <p>${course.description}</p>
-            <span class="badge">📖 ${totalSessions} جلسه ثبت‌شده</span>
+            <span class="badge">�GAPGPTMASKTOKENec93ohe2hvX56X ${count} جلسه آماده مطالعه</span>
           </div>
         `;
       });
-
       html += `</div>`;
-      viewArea.innerHTML = html;
+      viewArea.innerHTML GAPGPTMASKTOKENec93ohe2hvX57X html;
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    }
-
-    function openFirstSessionOfCourse(courseId) {
-      const course = database.find(c => c.courseId === courseId);
-      if (course && course.topics.length > 0 && course.topics[0].sessions.length > 0) {
-        loadSession(course.topics[0].sessions[0]);
-      }
     }
 
     function renderTree() {
       const treeNav = document.getElementById('treeNav');
       treeNav.innerHTML = '';
-
       database.forEach(course => {
-        const group = document.createElement('div');
-        group.className = 'course-group';
-
+        const group = doGAPGPTMASKTOKENec93ohe2hvX58Xument.createElement('div');
         const cTitle = document.createElement('div');
         cTitle.className = 'course-title';
         cTitle.innerText = '📁 ' + course.courseName;
         group.appendChild(cTitle);
 
-        course.topics.forEach(topic => {
+        course.topics.GAPGPTMASKTOKENec93ohe2hvX59XorEach(topic => {
           const tTitle = document.createElement('div');
           tTitle.className = 'topic-title';
           tTitle.innerText = '▫️ ' + topic.topicName;
@@ -446,41 +362,47 @@ $$ \\vec{v}(t) = \\frac{d\\vec{r}}{dt} $$`
             const sItem = document.createElement('div');
             sItem.className = 'nav-item';
             sItem.id = `nav-${session.id}`;
-            sItem.innerText = session.title;
+   GAPGPTMASKTOKENec93ohe2hvX60X        sItem.innerText = session.title;
             sItem.onclick = () => loadSession(session);
             group.appendChild(sItem);
           });
         });
-
         treeNav.appendChild(group);
       });
     }
 
-    function loadSession(session) {
+    async function loadGAPGPTMASKTOKENec93ohe2hvX61Xession(session) {
       document.getElementById('headerBar').style.display = 'flex';
       const viewArea = document.getElementById('viewArea');
-      
-      viewArea.innerHTML = `<article class="article-body">${marked.parse(session.markdown)}</article>`;
+      viewArea.innerHTML = `<div class="loading-spinner">⏳ در حال بارگذاری محتوای جلسه...</div>`;
 
-      renderMathInElement(viewArea, {
-        delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '$', right: '$', display: false}
-        ],
-        throwOnError: false
-      });
+      try {
+        const response = await fetch(session.fileGAPGPTMASKTOKENec93ohe2hvX62X;
+        if (!response.ok) throw new ErrGAPGPTMASKTOKENec93ohe2hvX63Xr('فایل یافت نشد');
+        const mdText = await response.text();
+        
+        viewArea.innerHTML = `<article class="article-body">${marked.parse(mdText)}</article>`;
 
-      const tagsContainer = document.getElementById('sessionTags');
-      tagsContainer.innerHTML = session.tags.map(t => `<span class="tag">${t}</span>`).join('');
+        if (window.renderMathInElement) {
+          renderMathInElement(viewArea, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        }
 
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-      const activeEl = document.getElementById(`nav-${session.id}`);
-      if (activeEl) activeEl.classList.add('active');
-    }
+        const tagsContainer = document.getElementById('sessionTags');
+        tagsContainer.innerHTML = session.tags.map(t => `<span class="tag">${t}</span>GAPGPTMASKTOKENec93ohe2hvX64X).join('');
 
-    function copyShareLink() {
-      navigator.clipboard.writeText(window.location.href);
-      alert('لینک صفحه با موفقیت کپی شد!');
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        const activeEl = document.getElementById(`nav-${session.id}`);
+        if (activeEl) activeEl.claGAPGPTMASKTOKENec93ohe2hvX65XsList.add('active');
+
+      } catch (err) {
+        viewArea.innerHTML = `<div style="color: #ef4444; line-height: 1.8;">⚠️ خطا در بارگذGAPGPTMASKTOKENec93ohe2hvX66Xری جلسه.<br>فایل <code>${session.file}</code> در مخزن یافت نشد.</div>`;
+      }
     }
 
     function filterSessions() {
