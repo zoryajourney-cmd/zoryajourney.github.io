@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celine Study Hub | دارک آکادمیک</title>
+
+  <!-- فونت Vazirmatn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- کتابخانه‌های پردازش مارک‌داون و فرمول KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    :root {
+      --bg-main: #0B0E17;
+      --bg-card: rgba(19, 24, 38, 0.7);
+      --bg-sidebar: #0f1322;
+      --accent-purple: #8B5CF6;
+      --accent-cyan: #06B6D4;
+      --accent-pink: #EC4899;
+      --border-glow: rgba(139, 92, 246, 0.25);
+      --text-main: #E2E8F0;
+      --text-muted: #94A3B8;
+      --code-bg: #161B2E;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* سایدبار ناوبری */
+    aside {
+      width: 320px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border-glow);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      padding: 1.2rem;
+      gap: 1.2rem;
+    }
+
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--code-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      color: #fff;
+      font-family: inherit;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .tree-nav {
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .course-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-item:hover, .nav-item.active {
+      background: rgba(139, 92, 246, 0.15);
+      color: #fff;
+      border-right: 3px solid var(--accent-purple);
+    }
+
+    /* محتوای اصلی */
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2.5rem 3.5rem;
+      position: relative;
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .tag {
+      background: rgba(6, 182, 212, 0.15);
+      color: var(--accent-cyan);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    .action-btn {
+      background: var(--code-bg);
+      border: 1px solid var(--border-glow);
+      color: var(--text-main);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .action-btn:hover {
+      background: var(--accent-purple);
+      color: white;
+    }
+
+    /* استایل‌های محتوای مارک‌داون رندر شده */
+    .article-body {
+      max-width: 850px;
+      line-height: 1.85;
+      font-size: 1.05rem;
+    }
+    .article-body h1 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--accent-purple);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    .article-body h2 {
+      font-size: 1.5rem;
+      color: var(--accent-cyan);
+      margin: 1.8rem 0 1rem;
+    }
+    .article-body h3 {
+      font-size: 1.2rem;
+      color: var(--accent-pink);
+      margin: 1.2rem 0 0.6rem;
+    }
+    .article-body p { margin-bottom: 1.2rem; }
+
+    /* باکس‌های شیک نکته و مثال */
+    .note-box {
+      background: rgba(139, 92, 246, 0.08);
+      border-right: 4px solid var(--accent-purple);
+      padding: 1.2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .example-box {
+      background: rgba(6, 182, 212, 0.08);
+      border-right: 4px solid var(--accent-cyan);
+      padding: 1.2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+
+    pre code {
+      display: block;
+      background: var(--code-bg);
+      padding: 1.2rem;
+      border-radius: 8px;
+      direction: ltr;
+      text-align: left;
+      font-family: 'Courier New', Courier, monospace;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 1.2rem;
+    }
+
+    /* چاپ تمیز در حالت PDF */
+    @media print {
+      aside, .header-bar .action-btn { display: none; }
+      body { background: white; color: black; }
+      main { padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- سایدبار ناوبری درختی -->
+  <aside>
+    <div class="brand">✨ Celine Study Hub</div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="جست‌وجو در مباحث..." oninput="filterSessions()">
+    </div>
+    <div class="tree-nav" id="treeNav">
+      <!-- جلسات به‌صورت پویا از سورس بارگذاری می‌شوند -->
+    </div>
+  </aside>
+
+  <!-- محتوای اصلی جزوه -->
+  <main>
+    <div class="header-bar">
+      <div class="tags" id="sessionTags">
+        <span class="tag">ریاضی عمومی ۱</span>
+        <span class="tag">جلسه ۱</span>
+      </div>
+      <div style="display: flex; gap: 0.5rem;">
+        <button class="action-btn" onclick="window.print()">🖨️ خروجی PDF</button>
+        <button class="action-btn" onclick="copyShareLink()">🔗 اشتراک‌گذاری</button>
+      </div>
+    </div>
+
+    <article class="article-body" id="contentArea">
+      <!-- محتوای مارک‌داون رندر شده اینجا می‌نشیند -->
+    </article>
+  </main>
+
+  <script>
+    // پایگاه داده جلسات (Markdown مستقیم)
+    const sessions = [
+      {
+        id: "math1-limits",
+        course: "ریاضی عمومی ۱",
+        topic: "حد و پیوستگی",
+        title: "جلسه ۱: مفهوم شهودی و تعریف دقیق حد",
+        tags: ["ریاضی ۱", "حد", "پیوستگی"],
+        markdown: `
+# مفهوم حد (Limit)
+
+حد یکی از بنیادین‌ترین ابزارهای ریاضی عمومی و حساب دیفرانسیل است که رفتار یک تابع را زمانی که متغیر به یک مقدار خاص نزدیک می‌شود، بررسی می‌کند.
+
+## تعریف شهودی حد
+می‌گوییم حد تابع $f(x)$ وقتی $x$ به $a$ نزدیک می‌شود برابر با $L$ است:
+$$\\lim_{x \\to a} f(x) = L$$
+
+اگر بتوانیم مقادیر $f(x)$ را با نزدیک کردن کافی $x$ به $a$، به اندازه دلخواه به $L$ نزدیک کنیم.
+
+<div class="note-box">
+💡 **نکته کلیدی:** مقدار حد در نقطه $x = a$ هیچ ارتباطی با مقدار خود تابع در آن نقطه یعنی $f(a)$ ندارد! حتی ممکن است تابع در آن نقطه تعریف نشده باشد.
+</div>
+
+## مثال کاربردی
+تابع کسری زیر را در نظر بگیرید:
+$$f(x) = \\frac{x^2 - 1}{x - 1}$$
+
+این تابع در نقطه $x = 1$ تعریف‌نشده است (مخرج صفر می‌شود). اما برای محاسبه حد:
+
+$$\\lim_{x \\to 1} \\frac{(x - 1)(x + 1)}{x - 1} = \\lim_{x \\to 1} (x + 1) = 2$$
+
+<div class="example-box">
+📌 **نتیجه:** با اینکه تابع در $x=1$ تعریف نشده، اما حد آن برابر با **۲** است.
+</div>
+        `
+      }
+    ];
+
+    function renderTree() {
+      const treeNav = document.getElementById('treeNav');
+      treeNav.innerHTML = '';
+      
+      const courses = {};
+      sessions.forEach(s => {
+        if (!courses[s.course]) courses[s.course] = [];
+        courses[s.course].push(s);
+      });
+
+      for (let course in courses) {
+        const title = document.createElement('div');
+        title.className = 'course-title';
+        title.innerText = course;
+        treeNav.appendChild(title);
+
+        courses[course].forEach(s => {
+          const item = document.createElement('div');
+          item.className = 'nav-item';
+          item.innerText = s.title;
+          item.onclick = () => loadSession(s);
+          treeNav.appendChild(item);
+        });
+      }
+    }
+
+    function loadSession(session) {
+      const contentArea = document.getElementById('contentArea');
+      contentArea.innerHTML = marked.parse(session.markdown);
+      
+      // رندر خودکار فرمول‌های KaTeX
+      renderMathInElement(contentArea, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+
+      // به‌روزرسانی برچسب‌ها
+      const tagsContainer = document.getElementById('sessionTags');
+      tagsContainer.innerHTML = session.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    }
+
+    function copyShareLink() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('لینک جلسه کپی شد!');
+    }
+
+    function filterSessions() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      document.querySelectorAll('.nav-item').forEach(el => {
+        el.style.display = el.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    // بارگذاری اولیه
+    renderTree();
+    loadSession(sessions[0]);
+  </script>
+</body>
+</html>
