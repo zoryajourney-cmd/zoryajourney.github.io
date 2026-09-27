@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZoryaJourney | پایگاه دانش علمی</title>
 
   <!-- فونت Vazirmatn -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
 
-  <!-- کتابخانه‌های KaTeX و Marked -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <!-- KaTeX + Marked -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -21,14 +21,30 @@
       --bg-main: #0B0E17;
       --bg-card: rgba(19, 24, 38, 0.85);
       --bg-sidebar: #0f1322;
+
       --accent-purple: #8B5CF6;
       --accent-cyan: #06B6D4;
       --accent-pink: #EC4899;
       --accent-amber: #F59E0B;
+
       --border-glow: rgba(139, 92, 246, 0.25);
       --text-main: #E2E8F0;
       --text-muted: #94A3B8;
       --code-bg: #161B2E;
+
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* Light mode vars (set by [data-theme="light"]) */
+    :root[data-theme="light"] {
+      --bg-main: #f6f7fb;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --bg-sidebar: #ffffff;
+      --border-glow: rgba(2, 6, 23, 0.08);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --code-bg: #0b1220;
     }
 
     * {
@@ -39,14 +55,14 @@
 
     body {
       font-family: 'Vazirmatn', sans-serif;
-      background-color: var(--bg-main);
+      background: var(--bg-main);
       color: var(--text-main);
       display: flex;
       height: 100vh;
       overflow: hidden;
     }
 
-    /* سایدبار ناوبری */
+    /* Sidebar */
     aside {
       width: 320px;
       background: var(--bg-sidebar);
@@ -54,12 +70,14 @@
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
-      padding: 1.2rem;
-      gap: 1.2rem;
+      padding: 1rem;
+      gap: 0.9rem;
+      position: relative;
+      z-index: 3;
     }
 
     .brand {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 900;
       background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
       -webkit-background-clip: text;
@@ -68,21 +86,28 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      user-select: none;
     }
 
     .search-box input {
       width: 100%;
-      background: var(--code-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 0.6rem 0.8rem;
+      background: rgba(22, 27, 46, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 10px;
+      padding: 0.65rem 0.85rem;
       color: #fff;
       font-family: inherit;
       outline: none;
-      transition: border 0.2s;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    :root[data-theme="light"] .search-box input {
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid rgba(2, 6, 23, 0.10);
     }
     .search-box input:focus {
       border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.18);
     }
 
     .tree-nav {
@@ -90,16 +115,21 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0.7rem;
+      padding-bottom: 0.25rem;
     }
 
     .course-title {
       font-size: 0.88rem;
       font-weight: 800;
       color: var(--accent-cyan);
-      padding-bottom: 0.3rem;
+      padding-bottom: 0.35rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    :root[data-theme="light"] .course-title {
+      border-bottom-color: rgba(2, 6, 23, 0.08);
     }
 
     .topic-title {
@@ -110,36 +140,74 @@
     }
 
     .nav-item {
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
       cursor: pointer;
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       transition: all 0.2s;
-      margin-right: 0.5rem;
-      line-height: 1.4;
+      margin-right: 0.35rem;
+      line-height: 1.45;
+      border: 1px solid transparent;
     }
-    .nav-item:hover, .nav-item.active {
-      background: rgba(139, 92, 246, 0.18);
-      color: #fff;
+    .nav-item:hover,
+    .nav-item.active {
+      background: rgba(139, 92, 246, 0.16);
+      color: var(--text-main);
       border-right: 3px solid var(--accent-purple);
+      border-color: rgba(139, 92, 246, 0.25);
     }
 
-    /* فضای محتوای اصلی */
+    /* Main */
     main {
       flex: 1;
       overflow-y: auto;
-      padding: 2.5rem 3.5rem;
+      padding: 1.2rem 2.2rem 2.5rem;
       position: relative;
     }
 
-    .header-bar {
+    .topbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 1rem;
+    }
+    :root[data-theme="light"] .topbar {
+      border-bottom-color: rgba(2, 6, 23, 0.08);
+    }
+
+    .left-actions,
+    .right-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: rgba(22, 27, 46, 0.75);
+      border: 1px solid var(--border-glow);
+      color: var(--text-main);
+      padding: 0.5rem 0.8rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.88rem;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      user-select: none;
+    }
+    :root[data-theme="light"] .action-btn {
+      background: #ffffff;
+    }
+    .action-btn:hover {
+      background: rgba(139, 92, 246, 0.20);
+      border-color: rgba(139, 92, 246, 0.45);
     }
 
     .tags {
@@ -151,191 +219,396 @@
       background: rgba(6, 182, 212, 0.15);
       color: var(--accent-cyan);
       padding: 0.25rem 0.65rem;
-      border-radius: 4px;
+      border-radius: 999px;
       font-size: 0.8rem;
+      border: 1px solid rgba(6, 182, 212, 0.25);
     }
 
-    .action-btn {
-      background: var(--code-bg);
-      border: 1px solid var(--border-glow);
-      color: var(--text-main);
-      padding: 0.45rem 0.85rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.85rem;
-      transition: 0.2s;
-    }
-    .action-btn:hover {
-      background: var(--accent-purple);
-      color: white;
-    }
-
-    /* داشبورد اصلی */
+    /* Dashboard */
     .dashboard-title {
-      font-size: 2.2rem;
+      font-size: 2.05rem;
       font-weight: 900;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #fff, var(--accent-cyan));
+      margin-bottom: 0.4rem;
+      background: linear-gradient(135deg, var(--text-main), var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .dashboard-subtitle {
       color: var(--text-muted);
-      margin-bottom: 2rem;
+      margin-bottom: 1.4rem;
+      line-height: 1.8;
     }
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 1.1rem;
     }
     .course-card {
       background: var(--bg-card);
       border: 1px solid var(--border-glow);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border-radius: var(--radius);
+      padding: 1.2rem;
       cursor: pointer;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      box-shadow: var(--shadow);
     }
     .course-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      border-color: rgba(6, 182, 212, 0.40);
     }
-    .course-card h3 {
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .course-card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
+    .course-card h3 { color: var(--text-main); margin-bottom: 0.4rem; }
+    .course-card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; }
     .course-card .badge {
       display: inline-block;
-      margin-top: 1rem;
-      background: rgba(139, 92, 246, 0.2);
+      margin-top: 0.85rem;
+      background: rgba(139, 92, 246, 0.18);
       color: var(--accent-purple);
-      padding: 0.25rem 0.65rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(139, 92, 246, 0.22);
     }
 
-    /* محتوای علمی مقاله */
+    /* Article */
+    .article-shell {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 1.2rem;
+      align-items: start;
+    }
+
     .article-body {
-      max-width: 900px;
+      max-width: 980px;
       line-height: 1.95;
       font-size: 1.05rem;
     }
+
     .article-body h1 {
-      font-size: 2.1rem;
-      color: #fff;
-      margin: 1.5rem 0 1rem;
+      font-size: 2rem;
+      color: var(--text-main);
+      margin: 1.2rem 0 1rem;
       border-bottom: 2px solid var(--accent-purple);
-      padding-bottom: 0.4rem;
+      padding-bottom: 0.35rem;
     }
     .article-body h2 {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       color: var(--accent-cyan);
-      margin: 2rem 0 0.8rem;
+      margin: 1.8rem 0 0.75rem;
     }
     .article-body h3 {
-      font-size: 1.2rem;
+      font-size: 1.12rem;
       color: var(--accent-pink);
-      margin: 1.5rem 0 0.6rem;
+      margin: 1.2rem 0 0.6rem;
     }
-    .article-body p {
-      margin-bottom: 1.2rem;
-    }
-    .article-body ul, .article-body ol {
-      margin-right: 1.5rem;
-      margin-bottom: 1.2rem;
-    }
-    .article-body li {
-      margin-bottom: 0.4rem;
-    }
+    .article-body p { margin-bottom: 1.1rem; }
+    .article-body ul,
+    .article-body ol { margin-right: 1.4rem; margin-bottom: 1.1rem; }
+    .article-body li { margin-bottom: 0.35rem; }
 
-    /* جداول */
+    /* Tables */
     .article-body table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.5rem 0;
-      background: var(--code-bg);
-      border-radius: 8px;
+      margin: 1.3rem 0;
+      background: rgba(22, 27, 46, 0.75);
+      border-radius: 12px;
       overflow: hidden;
     }
-    .article-body th, .article-body td {
+    :root[data-theme="light"] .article-body table { background: #ffffff; }
+    .article-body th,
+    .article-body td {
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0.8rem 1rem;
+      padding: 0.75rem 0.95rem;
       text-align: right;
+      vertical-align: top;
+    }
+    :root[data-theme="light"] .article-body th,
+    :root[data-theme="light"] .article-body td {
+      border-color: rgba(2, 6, 23, 0.08);
     }
     .article-body th {
       background: rgba(139, 92, 246, 0.2);
       color: var(--accent-cyan);
     }
 
-    /* باکس‌های نکته و هشدار */
+    /* Blockquote / callout */
     .article-body blockquote {
       background: rgba(139, 92, 246, 0.08);
       border-right: 4px solid var(--accent-purple);
-      padding: 1rem 1.2rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0;
-      color: #F1F5F9;
+      padding: 0.95rem 1.1rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.2rem 0;
+      color: var(--text-main);
     }
 
-    /* فرمول‌های ریاضی KaTeX */
-    .katex-display {
-      direction: ltr !important;
-      margin: 1.2rem 0 !important;
+    /* Code blocks / inline code */
+    .article-body pre {
+      background: rgba(22, 27, 46, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      overflow: auto;
+      margin: 1.2rem 0;
     }
-    .katex {
-      direction: ltr !important;
-      font-size: 1.15em;
+    .article-body code {
+      background: rgba(22, 27, 46, 0.75);
+      padding: 0.12rem 0.35rem;
+      border-radius: 8px;
     }
+    :root[data-theme="light"] .article-body pre { background: #0b1220; }
+    :root[data-theme="light"] .article-body code { background: rgba(2,6,23,0.08); }
 
-    .loading-spinner {
-      color: var(--accent-cyan);
-      font-size: 1.1rem;
+    /* KaTeX */
+    .katex-display { direction: ltr !important; margin: 1.1rem 0 !important; overflow-x: auto; overflow-y: hidden; }
+    .katex { direction: ltr !important; font-size: 1.12em; }
+
+    /* TOC */
+    .toc {
+      position: sticky;
+      top: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 14px;
+      padding: 0.9rem;
+      box-shadow: var(--shadow);
+    }
+    .toc h4 {
+      font-size: 0.92rem;
+      margin-bottom: 0.7rem;
+      color: var(--text-main);
+    }
+    .toc a {
+      display: block;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      padding: 0.28rem 0.35rem;
+      border-radius: 10px;
+      line-height: 1.45;
+    }
+    .toc a:hover { background: rgba(6,182,212,0.12); color: var(--text-main); }
+    .toc .lvl3 { padding-right: 1.0rem; font-size: 0.84rem; }
+
+    /* Search results panel */
+    .search-panel {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2.5rem 1rem 1rem;
+      z-index: 50;
+    }
+    .search-panel.open { display: flex; }
+
+    .search-modal {
+      width: min(980px, 96vw);
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .search-modal-header {
       display: flex;
-      align-items: center;
       gap: 0.6rem;
+      align-items: center;
+      padding: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    :root[data-theme="light"] .search-modal-header {
+      border-bottom-color: rgba(2, 6, 23, 0.08);
+    }
+    .search-modal-header input {
+      flex: 1;
+      background: rgba(22,27,46,0.85);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      outline: none;
+      font-family: inherit;
+    }
+    :root[data-theme="light"] .search-modal-header input {
+      background: #f1f5f9; color: #0f172a; border-color: rgba(2,6,23,0.10);
+    }
+    .search-results {
+      max-height: min(70vh, 560px);
+      overflow: auto;
+      padding: 0.75rem 0.9rem 1rem;
+    }
+    .result-item {
+      padding: 0.8rem 0.85rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(22,27,46,0.55);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+    }
+    :root[data-theme="light"] .result-item {
+      background: #ffffff;
+      border-color: rgba(2,6,23,0.08);
+    }
+    .result-item:hover {
+      border-color: rgba(6,182,212,0.35);
+    }
+    .result-title { font-weight: 800; color: var(--text-main); margin-bottom: 0.25rem; }
+    .result-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .result-snippet { color: var(--text-main); font-size: 0.92rem; line-height: 1.75; }
+    mark {
+      background: rgba(245, 158, 11, 0.28);
+      color: var(--text-main);
+      padding: 0 0.18rem;
+      border-radius: 6px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 1.2rem;
+      background: rgba(22, 27, 46, 0.92);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text-main);
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      display: none;
+      z-index: 60;
+      box-shadow: var(--shadow);
+      max-width: min(520px, 90vw);
+      line-height: 1.8;
+    }
+    :root[data-theme="light"] .toast {
+      background: rgba(255,255,255,0.95);
+      border-color: rgba(2,6,23,0.10);
+    }
+    .toast.show { display: block; }
+
+    /* Mobile drawer */
+    .hamburger {
+      display: none;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 20;
+    }
+    .overlay.open { display: block; }
+
+    @media (max-width: 980px) {
+      main { padding: 1rem 1rem 2rem; }
+      .article-shell { grid-template-columns: 1fr; }
+      .toc { order: -1; }
+    }
+
+    @media (max-width: 860px) {
+      body { overflow: hidden; }
+      aside {
+        position: fixed;
+        top: 0; right: 0;
+        height: 100vh;
+        transform: translateX(105%);
+        transition: transform 0.25s ease;
+        box-shadow: var(--shadow);
+      }
+      aside.open { transform: translateX(0); }
+      .overlay.open { display: block; }
+
+      .hamburger {
+        display: inline-flex;
+      }
     }
 
     @media print {
-      aside { display: none; }
-      main { padding: 0; }
-      body { background: white; color: black; }
-      .header-bar { display: none; }
+      aside, .topbar, .toc, .search-panel, .toast, .overlay { display: none !important; }
+      main { padding: 0 !important; }
+      body { background: white !important; color: black !important; }
     }
   </style>
 </head>
-<body>
 
-  <!-- نوار کناری -->
-  <aside>
+<body>
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
     <div class="brand" onclick="showDashboard()">
       ✨ ZoryaJourney
     </div>
+
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="جستجو در جلسات..." oninput="filterSessions()">
+      <!-- سرچ سریع فقط برای لیست جلسات -->
+      <input type="text" id="navFilterInput" placeholder="فیلتر عنوان جلسات..." oninput="filterSessions()" />
     </div>
+
+    <div class="left-actions">
+      <button class="action-btn" onclick="openSearchPanel()" title="جستجو در متن همه جلسات (کلید /)">
+        🔎 جستجوی عمیق
+      </button>
+      <button class="action-btn" onclick="toggleTheme()" title="تغییر تم">
+        🌓 تم
+      </button>
+    </div>
+
     <nav class="tree-nav" id="treeNav"></nav>
   </aside>
 
-  <!-- فضای اصلی -->
+  <!-- Main -->
   <main id="mainContainer">
-    <div class="header-bar" id="headerBar" style="display: none;">
-      <div class="tags" id="sessionTags"></div>
-      <div>
-        <button class="action-btn" onclick="window.print()">🖨️ خروجی PDF / چاپ</button>
+    <div class="topbar">
+      <div class="right-actions">
+        <button class="action-btn hamburger" onclick="openSidebar()" title="منو">
+          ☰ منو
+        </button>
+        <button class="action-btn" onclick="showDashboard()" title="خانه">
+          🏠 خانه
+        </button>
+        <button class="action-btn" onclick="resumeLast()" title="ادامه مطالعه">
+          ⏯️ ادامه
+        </button>
+      </div>
+
+      <div class="left-actions">
+        <button class="action-btn" onclick="decFont()" title="کوچک‌تر کردن فونت">
+          A-
+        </button>
+        <button class="action-btn" onclick="incFont()" title="بزرگ‌تر کردن فونت">
+          A+
+        </button>
+        <button class="action-btn" onclick="shareCurrent()" title="اشتراک‌گذاری جلسه">
+          🔗 اشتراک
+        </button>
+        <button class="action-btn" onclick="window.print()" title="چاپ / PDF">
+          🖨️ چاپ
+        </button>
       </div>
     </div>
 
+    <div class="tags" id="sessionTags" style="display:none; margin-bottom: 0.9rem;"></div>
     <div id="viewArea"></div>
   </main>
 
+  <!-- Search panel (deep search) -->
+  <div class="search-panel" id="searchPanel" onclick="closeSearchPanel(event)">
+    <div class="search-modal" onclick="event.stopPropagation()">
+      <div class="search-modal-header">
+        <input id="deepSearchInput" placeholder="جستجو در متن همه جلسات… (مثلاً: ضرب داخلی)" />
+        <button class="action-btn" onclick="runDeepSearch()">جستجو</button>
+        <button class="action-btn" onclick="closeSearchPanel()">بستن</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
   <script>
-    // پایگاه داده جلسات فیزیک ۱
+    // ---------- Data ----------
     const database = [
       {
         courseId: "physics1",
@@ -358,103 +631,328 @@
       }
     ];
 
-    function showDashboard() {
-      document.getElementById('headerBar').style.display = 'none';
-      const viewArea = document.getElementById('viewArea');
-      let html = `
-        <div class="dashboard-title">📚 پایگاه دانش ZoryaJourney</div>
-        <div class="dashboard-subtitle">سامانه یکپارچه و اسکرولی جزوات تخصصی دانشگاهی</div>
-        <div class="cards-grid">
-      `;
-      database.forEach(course => {
-        let count = 0;
-        course.topics.forEach(t => count += t.sessions.length);
-        html += `
-          <div class="course-card" onclick="loadSession(database[0].topics[0].sessions[0])">
-            <h3>${course.courseName}</h3>
-            <p>${course.description}</p>
-            <span class="badge">📖 ${count} جلسه آماده مطالعه</span>
-          </div>
-        `;
-      });
-      html += `</div>`;
-      viewArea.innerHTML = html;
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    const ALL_SESSIONS = database.flatMap(c => c.topics.flatMap(t => t.sessions));
+
+    // ---------- State ----------
+    let currentSession = null;
+    let mdCache = new Map(); // file -> mdText
+    let fontScale = Number(localStorage.getItem("zj_fontScale") || "1");
+    const THEME_KEY = "zj_theme";
+    const LAST_SESSION_KEY = "zj_lastSessionId";
+
+    // ---------- Utilities ----------
+    function setToast(msg, ms = 2200) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(el._t);
+      el._t = setTimeout(() => el.classList.remove("show"), ms);
     }
 
+    function escapeHTML(s) {
+      return s.replace(/[&<>"']/g, ch => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[ch]));
+    }
+
+    function normalizeText(s) {
+      return (s || "")
+        .toLowerCase()
+        .replace(/ي/g, "ی")
+        .replace(/ك/g, "ک")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function applyFontScale() {
+      document.documentElement.style.setProperty("--fontScale", String(fontScale));
+      const body = document.querySelector(".article-body");
+      if (body) body.style.fontSize = (1.05 * fontScale).toFixed(3) + "rem";
+      localStorage.setItem("zj_fontScale", String(fontScale));
+    }
+
+    // ---------- Theme ----------
+    function initTheme() {
+      const saved = localStorage.getItem(THEME_KEY) || "dark";
+      document.documentElement.dataset.theme = saved;
+    }
+    function toggleTheme() {
+      const now = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+      document.documentElement.dataset.theme = now;
+      localStorage.setItem(THEME_KEY, now);
+      setToast(now === "light" ? "تم روشن فعال شد." : "تم تاریک فعال شد.");
+    }
+
+    // ---------- Sidebar (mobile drawer) ----------
+    function openSidebar() {
+      document.getElementById("sidebar").classList.add("open");
+      document.getElementById("overlay").classList.add("open");
+    }
+    function closeSidebar() {
+      document.getElementById("sidebar").classList.remove("open");
+      document.getElementById("overlay").classList.remove("open");
+    }
+
+    // ---------- Tree ----------
     function renderTree() {
-      const treeNav = document.getElementById('treeNav');
-      treeNav.innerHTML = '';
+      const treeNav = document.getElementById("treeNav");
+      treeNav.innerHTML = "";
       database.forEach(course => {
-        const group = document.createElement('div');
-        const cTitle = document.createElement('div');
-        cTitle.className = 'course-title';
-        cTitle.innerText = '📁 ' + course.courseName;
+        const group = document.createElement("div");
+
+        const cTitle = document.createElement("div");
+        cTitle.className = "course-title";
+        cTitle.innerText = "📁 " + course.courseName;
         group.appendChild(cTitle);
 
         course.topics.forEach(topic => {
-          const tTitle = document.createElement('div');
-          tTitle.className = 'topic-title';
-          tTitle.innerText = '▫️ ' + topic.topicName;
+          const tTitle = document.createElement("div");
+          tTitle.className = "topic-title";
+          tTitle.innerText = "▫️ " + topic.topicName;
           group.appendChild(tTitle);
 
           topic.sessions.forEach(session => {
-            const sItem = document.createElement('div');
-            sItem.className = 'nav-item';
+            const sItem = document.createElement("div");
+            sItem.className = "nav-item";
             sItem.id = `nav-${session.id}`;
             sItem.innerText = session.title;
             sItem.onclick = () => loadSession(session);
             group.appendChild(sItem);
           });
         });
+
         treeNav.appendChild(group);
       });
     }
 
-    async function loadSession(session) {
-      document.getElementById('headerBar').style.display = 'flex';
-      const viewArea = document.getElementById('viewArea');
-      viewArea.innerHTML = `<div class="loading-spinner">⏳ در حال بارگذاری محتوای جلسه...</div>`;
+    // ---------- Dashboard ----------
+    function showDashboard() {
+      currentSession = null;
+      document.getElementById("sessionTags").style.display = "none";
+      const viewArea = document.getElementById("viewArea");
 
-      try {
-        const response = await fetch(session.file);
-        if (!response.ok) throw new Error('فایل یافت نشد');
-        const mdText = await response.text();
-        
-        viewArea.innerHTML = `<article class="article-body">${marked.parse(mdText)}</article>`;
+      let html = `
+        <div class="dashboard-title">📚 پایگاه دانش ZoryaJourney</div>
+        <div class="dashboard-subtitle">
+          سامانهٔ مطالعهٔ جزوات دانشگاهی با جستجوی عمیق، حالت مطالعه، اشتراک‌گذاری و پشتیبانی کامل موبایل.
+        </div>
+        <div class="cards-grid">
+      `;
 
-        if (window.renderMathInElement) {
-          renderMathInElement(viewArea, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false}
-            ],
-            throwOnError: false
-          });
-        }
+      database.forEach(course => {
+        let count = 0;
+        course.topics.forEach(t => (count += t.sessions.length));
+        html += `
+          <div class="course-card" onclick="loadSession(database[0].topics[0].sessions[0])">
+            <h3>${escapeHTML(course.courseName)}</h3>
+            <p>${escapeHTML(course.description)}</p>
+            <span class="badge">📖 ${count} جلسه آماده مطالعه</span>
+          </div>
+        `;
+      });
 
-        const tagsContainer = document.getElementById('sessionTags');
-        tagsContainer.innerHTML = session.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      html += `</div>`;
+      viewArea.innerHTML = html;
 
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        const activeEl = document.getElementById(`nav-${session.id}`);
-        if (activeEl) activeEl.classList.add('active');
+      document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+      closeSidebar();
+    }
 
-      } catch (err) {
-        viewArea.innerHTML = `<div style="color: #ef4444; line-height: 1.8;">⚠️ خطا در بارگذاری جلسه.<br>فایل <code>${session.file}</code> در مخزن یافت نشد.</div>`;
+    // ---------- Load session ----------
+    async function fetchMd(file) {
+      if (mdCache.has(file)) return mdCache.get(file);
+      const response = await fetch(file, { cache: "no-store" });
+      if (!response.ok) throw new Error("فایل یافت نشد: " + file);
+      const mdText = await response.text();
+      mdCache.set(file, mdText);
+      return mdText;
+    }
+
+    function setActiveNav(sessionId) {
+      document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+      const activeEl = document.getElementById(`nav-${sessionId}`);
+      if (activeEl) activeEl.classList.add("active");
+    }
+
+    function setTags(tags) {
+      const tagsContainer = document.getElementById("sessionTags");
+      tagsContainer.innerHTML = (tags || []).map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("");
+      tagsContainer.style.display = "flex";
+    }
+
+    function slugifyHeading(text) {
+      const s = normalizeText(text)
+        .replace(/[^\p{L}\p{N}\s-]/gu, "")
+        .replace(/\s+/g, "-")
+        .slice(0, 60);
+      return s || "sec";
+    }
+
+    function buildTOC(container) {
+      const headings = [...container.querySelectorAll("h2, h3")];
+      if (headings.length === 0) return "";
+
+      const items = headings.map((h, idx) => {
+        if (!h.id) h.id = `${slugifyHeading(h.textContent)}-${idx + 1}`;
+        const cls = h.tagName.toLowerCase() === "h3" ? "lvl3" : "";
+        return `<a class="${cls}" href="#${encodeURIComponent(h.id)}">${escapeHTML(h.textContent)}</a>`;
+      }).join("");
+
+      return `
+        <div class="toc">
+          <h4>فهرست جلسه</h4>
+          ${items}
+        </div>
+      `;
+    }
+
+    function renderMath(root) {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(root, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
       }
     }
 
+    async function loadSession(session, opts = {}) {
+      currentSession = session;
+      localStorage.setItem(LAST_SESSION_KEY, session.id);
+
+      const viewArea = document.getElementById("viewArea");
+      viewArea.innerHTML = `<div style="color: var(--accent-cyan); font-size: 1.05rem;">⏳ در حال بارگذاری...</div>`;
+
+      try {
+        const mdText = await fetchMd(session.file);
+        const html = marked.parse(mdText);
+
+        // Wrap with TOC column
+        viewArea.innerHTML = `
+          <div class="article-shell">
+            <article class="article-body" id="articleBody">${html}</article>
+            <div id="tocSlot"></div>
+          </div>
+        `;
+
+        const article = document.getElementById("articleBody");
+        renderMath(viewArea);
+
+        // Build TOC after render
+        document.getElementById("tocSlot").innerHTML = buildTOC(article);
+
+        setTags(session.tags);
+        setActiveNav(session.id);
+
+        // Font scale
+        applyFontScale();
+
+        // Close sidebar in mobile
+        closeSidebar();
+
+        // Optional: scroll to query anchor
+        if (opts.anchor) {
+          const el = document.getElementById(opts.anchor);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+      } catch (err) {
+        viewArea.innerHTML = `
+          <div style="color:#ef4444; line-height: 1.9;">
+            ⚠️ خطا در بارگذاری جلسه.<br/>
+            <div style="margin-top: 0.6rem; color: var(--text-muted);">
+              ${escapeHTML(String(err))}
+            </div>
+          </div>
+        `;
+        setToast("خطا در بارگذاری جلسه.");
+      }
+    }
+
+    // ---------- Nav filter (titles only) ----------
     function filterSessions() {
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      document.querySelectorAll('.nav-item').forEach(el => {
-        el.style.display = el.innerText.toLowerCase().includes(q) ? 'block' : 'none';
+      const q = normalizeText(document.getElementById("navFilterInput").value);
+      document.querySelectorAll(".nav-item").forEach(el => {
+        const visible = normalizeText(el.innerText).includes(q);
+        el.style.display = visible ? "block" : "none";
       });
     }
 
-    // مقداردهی اولیه
-    renderTree();
-    showDashboard();
-  </script>
-</body>
-</html>
+    // ---------- Reading controls ----------
+    function incFont() {
+      fontScale = Math.min(1.35, Number((fontScale + 0.05).toFixed(2)));
+      applyFontScale();
+      setToast("فونت بزرگ‌تر شد.");
+    }
+    function decFont() {
+      fontScale = Math.max(0.85, Number((fontScale - 0.05).toFixed(2)));
+      applyFontScale();
+      setToast("فونت کوچک‌تر شد.");
+    }
+
+    // ---------- Share ----------
+    function buildShareUrl(session) {
+      const url = new URL(window.location.href);
+      url.hash = session ? `#${session.id}` : "";
+      return url.toString();
+    }
+
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        // fallback
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        return true;
+      }
+    }
+
+    async function shareCurrent() {
+      if (!currentSession) {
+        setToast("اول یک جلسه را باز کن تا لینک اشتراک ساخته شود.");
+        return;
+      }
+      const url = buildShareUrl(currentSession);
+      const title = currentSession.title;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, text: title, url });
+          setToast("اشتراک‌گذاری انجام شد.");
+          return;
+        } catch {
+          // user cancelled or failed -> fallback
+        }
+      }
+      await copyToClipboard(url);
+      setToast("لینک جلسه کپی شد.");
+    }
+
+    // ---------- Deep search ----------
+    let isIndexing = false;
+
+    async function warmupIndex() {
+      if (isIndexing) return;
+      isIndexing = true;
+      // Fetch all md in background (sequential = less pressure on GitHub Pages)
+      for (const s of ALL_SESSIONS) {
+        try { await fetchMd(s.file); } catch { /* ignore */ }
+      }
+      isIndexing = false;
+    }
+
+    function openSearchPanel() {
+      document.getElementById("searchPanel").classList.add("open");
+      const input = document.getElementById("deepSearchInput");
+      input.value = "";
+      input.focus();
+      document.getElementById("searchResults").innerHTML =
+        `<div style="color:var(--text-muted); line
