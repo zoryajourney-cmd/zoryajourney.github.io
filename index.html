@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Celine Study Hub | دارک آکادمیک</title>
+  <title>ZoryaJourney | سامانه مدیریت دروس</title>
 
   <!-- فونت Vazirmatn -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-  <!-- کتابخانه‌های پردازش مارک‌داون و فرمول KaTeX -->
+  <!-- کتابخانه‌های پردازش فرمول KaTeX و Marked -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -19,7 +19,7 @@
   <style>
     :root {
       --bg-main: #0B0E17;
-      --bg-card: rgba(19, 24, 38, 0.7);
+      --bg-card: rgba(19, 24, 38, 0.75);
       --bg-sidebar: #0f1322;
       --accent-purple: #8B5CF6;
       --accent-cyan: #06B6D4;
@@ -40,7 +40,7 @@
       overflow: hidden;
     }
 
-    /* سایدبار ناوبری */
+    /* سایدبار */
     aside {
       width: 320px;
       background: var(--bg-sidebar);
@@ -58,6 +58,7 @@
       background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -83,28 +84,37 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0.6rem;
+    }
+
+    .course-group {
+      margin-bottom: 0.6rem;
     }
 
     .course-title {
       font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-weight: 800;
       color: var(--accent-cyan);
-      font-weight: 700;
-      margin-top: 0.5rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 0.4rem;
+    }
+
+    .topic-title {
+      font-size: 0.8rem;
+      color: var(--accent-pink);
+      padding: 0.2rem 0.5rem;
+      font-weight: 600;
     }
 
     .nav-item {
-      padding: 0.5rem 0.8rem;
+      padding: 0.45rem 0.8rem;
       border-radius: 6px;
       cursor: pointer;
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      margin-right: 0.5rem;
     }
     .nav-item:hover, .nav-item.active {
       background: rgba(139, 92, 246, 0.15);
@@ -132,6 +142,7 @@
     .tags {
       display: flex;
       gap: 0.5rem;
+      align-items: center;
     }
     .tag {
       background: rgba(6, 182, 212, 0.15);
@@ -145,7 +156,7 @@
       background: var(--code-bg);
       border: 1px solid var(--border-glow);
       color: var(--text-main);
-      padding: 0.4rem 0.8rem;
+      padding: 0.45rem 0.85rem;
       border-radius: 6px;
       cursor: pointer;
       font-family: inherit;
@@ -157,10 +168,67 @@
       color: white;
     }
 
-    /* استایل‌های محتوای مارک‌داون رندر شده */
+    /* صفحه داشبورد خانه */
+    .dashboard-title {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fff, var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .dashboard-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .course-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.15);
+    }
+    .course-card h3 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .course-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .course-card .badge {
+      display: inline-block;
+      margin-top: 1rem;
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--accent-purple);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* استایل‌های رندر مارک‌داون */
     .article-body {
-      max-width: 850px;
-      line-height: 1.85;
+      max-width: 880px;
+      line-height: 1.9;
       font-size: 1.05rem;
     }
     .article-body h1 {
@@ -174,7 +242,7 @@
     .article-body h2 {
       font-size: 1.5rem;
       color: var(--accent-cyan);
-      margin: 1.8rem 0 1rem;
+      margin: 2rem 0 1rem;
     }
     .article-body h3 {
       font-size: 1.2rem;
@@ -183,14 +251,12 @@
     }
     .article-body p { margin-bottom: 1.2rem; }
 
-    /* باکس‌های شیک نکته و مثال */
     .note-box {
       background: rgba(139, 92, 246, 0.08);
       border-right: 4px solid var(--accent-purple);
       padding: 1.2rem;
       border-radius: 0 8px 8px 0;
       margin: 1.5rem 0;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
     .example-box {
       background: rgba(6, 182, 212, 0.08);
@@ -200,21 +266,18 @@
       margin: 1.5rem 0;
     }
 
-    pre code {
-      display: block;
-      background: var(--code-bg);
-      padding: 1.2rem;
-      border-radius: 8px;
-      direction: ltr;
-      text-align: left;
-      font-family: 'Courier New', Courier, monospace;
-      border: 1px solid rgba(255,255,255,0.05);
-      margin-bottom: 1.2rem;
+    /* ریاضی KaTeX */
+    .katex-display {
+      direction: ltr !important;
+      margin: 1.2rem 0 !important;
+    }
+    .katex {
+      direction: ltr !important;
+      font-size: 1.15em;
     }
 
-    /* چاپ تمیز در حالت PDF */
     @media print {
-      aside, .header-bar .action-btn { display: none; }
+      aside, .header-bar { display: none; }
       body { background: white; color: black; }
       main { padding: 0; }
     }
@@ -222,52 +285,54 @@
 </head>
 <body>
 
-  <!-- سایدبار ناوبری درختی -->
+  <!-- سایدبار -->
   <aside>
-    <div class="brand">✨ Celine Study Hub</div>
+    <div class="brand" onclick="showDashboard()">
+      <span>✨ ZoryaJourney</span>
+    </div>
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="جست‌وجو در مباحث..." oninput="filterSessions()">
+      <input type="text" id="searchInput" placeholder="جست‌وجو در تمام جلسات..." oninput="filterSessions()">
     </div>
-    <div class="tree-nav" id="treeNav">
-      <!-- جلسات به‌صورت پویا از سورس بارگذاری می‌شوند -->
-    </div>
+    <div class="tree-nav" id="treeNav"></div>
   </aside>
 
-  <!-- محتوای اصلی جزوه -->
-  <main>
-    <div class="header-bar">
-      <div class="tags" id="sessionTags">
-        <span class="tag">ریاضی عمومی ۱</span>
-        <span class="tag">جلسه ۱</span>
-      </div>
+  <!-- محتوای اصلی -->
+  <main id="mainContainer">
+    <div class="header-bar" id="headerBar" style="display: none;">
+      <div class="tags" id="sessionTags"></div>
       <div style="display: flex; gap: 0.5rem;">
+        <button class="action-btn" onclick="showDashboard()">🏠 صفحه اصلی</button>
         <button class="action-btn" onclick="window.print()">🖨️ خروجی PDF</button>
         <button class="action-btn" onclick="copyShareLink()">🔗 اشتراک‌گذاری</button>
       </div>
     </div>
 
-    <article class="article-body" id="contentArea">
-      <!-- محتوای مارک‌داون رندر شده اینجا می‌نشیند -->
-    </article>
+    <div id="viewArea"></div>
   </main>
 
   <script>
-    // پایگاه داده جلسات (Markdown مستقیم)
-    const sessions = [
+    // پایگاه داده دروس
+    const database = [
       {
-        id: "math1-limits",
-        course: "ریاضی عمومی ۱",
-        topic: "حد و پیوستگی",
-        title: "جلسه ۱: مفهوم شهودی و تعریف دقیق حد",
-        tags: ["ریاضی ۱", "حد", "پیوستگی"],
-        markdown: `
-# مفهوم حد (Limit)
+        courseId: "math1",
+        courseName: "ریاضی عمومی ۱",
+        description: "حساب دیفرانسیل و انتگرال، حد، مشتق، پیوستگی و سری‌ها",
+        topics: [
+          {
+            topicName: "حد و پیوستگی",
+            sessions: [
+              {
+                id: "math1-limits-intro",
+                title: "جلسه ۱: مفهوم شهودی و تعریف دقیق حد",
+                tags: ["ریاضی ۱", "حد", "پیوستگی"],
+                markdown: `# مفهوم حد (Limit)
 
 حد یکی از بنیادین‌ترین ابزارهای ریاضی عمومی و حساب دیفرانسیل است که رفتار یک تابع را زمانی که متغیر به یک مقدار خاص نزدیک می‌شود، بررسی می‌کند.
 
 ## تعریف شهودی حد
 می‌گوییم حد تابع $f(x)$ وقتی $x$ به $a$ نزدیک می‌شود برابر با $L$ است:
-$$\\lim_{x \\to a} f(x) = L$$
+
+$$ \\lim_{x \\to a} f(x) = L $$
 
 اگر بتوانیم مقادیر $f(x)$ را با نزدیک کردن کافی $x$ به $a$، به اندازه دلخواه به $L$ نزدیک کنیم.
 
@@ -277,51 +342,127 @@ $$\\lim_{x \\to a} f(x) = L$$
 
 ## مثال کاربردی
 تابع کسری زیر را در نظر بگیرید:
-$$f(x) = \\frac{x^2 - 1}{x - 1}$$
+
+$$ f(x) = \\frac{x^2 - 1}{x - 1} $$
 
 این تابع در نقطه $x = 1$ تعریف‌نشده است (مخرج صفر می‌شود). اما برای محاسبه حد:
 
-$$\\lim_{x \\to 1} \\frac{(x - 1)(x + 1)}{x - 1} = \\lim_{x \\to 1} (x + 1) = 2$$
+$$ \\lim_{x \\to 1} \\frac{(x - 1)(x + 1)}{x - 1} = \\lim_{x \\to 1} (x + 1) = 2 $$
 
 <div class="example-box">
 📌 **نتیجه:** با اینکه تابع در $x=1$ تعریف نشده، اما حد آن برابر با **۲** است.
-</div>
-        `
+</div>`
+              }
+            ]
+          }
+        ]
+      },
+      {
+        courseId: "physics1",
+        courseName: "فیزیک دانشگاهی ۱",
+        description: "مکانیک کلاسیک، حرکت‌شناسی، قوانین نیوتون، کار و انرژی",
+        topics: [
+          {
+            topicName: "حرکت‌شناسی (سینماتیک)",
+            sessions: [
+              {
+                id: "phys1-kinematics",
+                title: "جلسه ۱: بردار مکان و سرعت لحظه‌ای",
+                tags: ["فیزیک ۱", "سینماتیک", "بردار"],
+                markdown: `# بردار مکان و سرعت لحظه‌ای
+
+در مکانیک کلاسیک، توصیف دقیق حرکت بدون در نظر گرفتن نیروها با سینماتیک انجام می‌شود.
+
+## بردار مکان
+موقعیت ذره در فضا با بردار مکان $\\vec{r}(t)$ مشخص می‌شود:
+$$ \\vec{r}(t) = x(t)\\hat{i} + y(t)\\hat{j} + z(t)\\hat{k} $$
+
+## سرعت لحظه‌ای
+سرعت لحظه‌ای مشتق بردار مکان نسبت به زمان است:
+$$ \\vec{v}(t) = \\frac{d\\vec{r}}{dt} $$`
+              }
+            ]
+          }
+        ]
       }
     ];
+
+    // نمایش صفحه اصلی (داشبورد کارت‌ها)
+    function showDashboard() {
+      document.getElementById('headerBar').style.display = 'none';
+      const viewArea = document.getElementById('viewArea');
+      
+      let html = `
+        <div class="dashboard-title">📚 مرکز یادگیری ZoryaJourney</div>
+        <div class="dashboard-subtitle">سامانه یکپارچه جزوات، فرمول‌ها و مباحث تحلیلی دانشگاه</div>
+        <div class="cards-grid">
+      `;
+
+      database.forEach(course => {
+        let totalSessions = 0;
+        course.topics.forEach(t => totalSessions += t.sessions.length);
+
+        html += `
+          <div class="course-card" onclick="openFirstSessionOfCourse('${course.courseId}')">
+            <h3>${course.courseName}</h3>
+            <p>${course.description}</p>
+            <span class="badge">📖 ${totalSessions} جلسه ثبت‌شده</span>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+      viewArea.innerHTML = html;
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    }
+
+    function openFirstSessionOfCourse(courseId) {
+      const course = database.find(c => c.courseId === courseId);
+      if (course && course.topics.length > 0 && course.topics[0].sessions.length > 0) {
+        loadSession(course.topics[0].sessions[0]);
+      }
+    }
 
     function renderTree() {
       const treeNav = document.getElementById('treeNav');
       treeNav.innerHTML = '';
-      
-      const courses = {};
-      sessions.forEach(s => {
-        if (!courses[s.course]) courses[s.course] = [];
-        courses[s.course].push(s);
-      });
 
-      for (let course in courses) {
-        const title = document.createElement('div');
-        title.className = 'course-title';
-        title.innerText = course;
-        treeNav.appendChild(title);
+      database.forEach(course => {
+        const group = document.createElement('div');
+        group.className = 'course-group';
 
-        courses[course].forEach(s => {
-          const item = document.createElement('div');
-          item.className = 'nav-item';
-          item.innerText = s.title;
-          item.onclick = () => loadSession(s);
-          treeNav.appendChild(item);
+        const cTitle = document.createElement('div');
+        cTitle.className = 'course-title';
+        cTitle.innerText = '📁 ' + course.courseName;
+        group.appendChild(cTitle);
+
+        course.topics.forEach(topic => {
+          const tTitle = document.createElement('div');
+          tTitle.className = 'topic-title';
+          tTitle.innerText = '▫️ ' + topic.topicName;
+          group.appendChild(tTitle);
+
+          topic.sessions.forEach(session => {
+            const sItem = document.createElement('div');
+            sItem.className = 'nav-item';
+            sItem.id = `nav-${session.id}`;
+            sItem.innerText = session.title;
+            sItem.onclick = () => loadSession(session);
+            group.appendChild(sItem);
+          });
         });
-      }
+
+        treeNav.appendChild(group);
+      });
     }
 
     function loadSession(session) {
-      const contentArea = document.getElementById('contentArea');
-      contentArea.innerHTML = marked.parse(session.markdown);
+      document.getElementById('headerBar').style.display = 'flex';
+      const viewArea = document.getElementById('viewArea');
       
-      // رندر خودکار فرمول‌های KaTeX
-      renderMathInElement(contentArea, {
+      viewArea.innerHTML = `<article class="article-body">${marked.parse(session.markdown)}</article>`;
+
+      renderMathInElement(viewArea, {
         delimiters: [
           {left: '$$', right: '$$', display: true},
           {left: '$', right: '$', display: false}
@@ -329,26 +470,28 @@ $$\\lim_{x \\to 1} \\frac{(x - 1)(x + 1)}{x - 1} = \\lim_{x \\to 1} (x + 1) = 2$
         throwOnError: false
       });
 
-      // به‌روزرسانی برچسب‌ها
       const tagsContainer = document.getElementById('sessionTags');
       tagsContainer.innerHTML = session.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      const activeEl = document.getElementById(`nav-${session.id}`);
+      if (activeEl) activeEl.classList.add('active');
     }
 
     function copyShareLink() {
       navigator.clipboard.writeText(window.location.href);
-      alert('لینک جلسه کپی شد!');
+      alert('لینک صفحه با موفقیت کپی شد!');
     }
 
     function filterSessions() {
       const q = document.getElementById('searchInput').value.toLowerCase();
       document.querySelectorAll('.nav-item').forEach(el => {
-        el.style.display = el.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+        el.style.display = el.innerText.toLowerCase().includes(q) ? 'block' : 'none';
       });
     }
 
-    // بارگذاری اولیه
     renderTree();
-    loadSession(sessions[0]);
+    showDashboard();
   </script>
 </body>
 </html>
