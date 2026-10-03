@@ -1,0 +1,71 @@
+site_name: "جزوهخانهٔ سلین"
+site_description: "از اولین کلاس تا آخرین ترم؛ یک جای مرتب برای یادگیری."
+site_url: !ENV [SITE_URL, "http://localhost:8000/"]
+
+docs_dir: generated-docs
+site_dir: site
+
+theme:
+  name: material
+  language: fa
+  direction: rtl
+  font: false
+  icon:
+    logo: material/notebook-outline
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: "رفتن به حالت تاریک"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: "رفتن به حالت روشن"
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+hooks:
+  - hooks.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+  - assets/extra.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+  - assets/math.js
+
+extra:
+  generator: false
+
+copyright: "یک جلسه، یک قدم جلوتر."
