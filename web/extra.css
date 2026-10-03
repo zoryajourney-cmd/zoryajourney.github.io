@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --md-text-font: "Vazirmatn";
+  --md-code-font: monospace;
+}
+
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f7faf9;
+  --md-primary-fg-color: #187d76;
+  --md-accent-fg-color: #7555c5;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #131d25;
+  --md-primary-fg-color: #246f70;
+  --md-accent-fg-color: #c1a6ff;
+}
+
+body {
+  background-image:
+    radial-gradient(
+      ellipse at top right,
+      rgba(61, 185, 157, 0.09),
+      transparent 55%
+    );
+}
+
+.md-header {
+  box-shadow: 0 4px 24px rgba(17, 61, 58, 0.09);
+}
+
+.md-typeset {
+  font-size: 0.85rem;
+  line-height: 2;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.md-typeset h1 {
+  color: var(--md-default-fg-color);
+}
+
+.study-hero {
+  margin: 1rem 0 2rem;
+  padding: 1.7rem;
+  border: 1px solid rgba(66, 160, 143, 0.25);
+  border-radius: 24px;
+  background: linear-gradient(
+    125deg,
+    rgba(70, 190, 160, 0.14),
+    rgba(155, 122, 230, 0.12)
+  );
+}
+
+.study-hero h2 {
+  margin-top: 0;
+}
+
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid rgba(125, 145, 153, 0.22);
+  border-radius: 18px;
+  padding: 1.25rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 6px 22px rgba(18, 47, 44, 0.04);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-3px);
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 12px 30px rgba(18, 47, 44, 0.09);
+}
+
+.md-typeset .md-button {
+  border-radius: 12px;
+}
+
+.note-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.note-tools button {
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 0.35rem 0.8rem;
+  color: var(--md-default-fg-color);
+  background: var(--md-code-bg-color);
+  border: 1px solid rgba(125, 145, 153, 0.25);
+  border-radius: 10px;
+}
+
+.share-status {
+  align-self: center;
+  font-size: 0.7rem;
+}
+
+.arithmatex,
+.katex-display {
+  direction: ltr;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+.md-typeset pre,
+.md-typeset pre code {
+  direction: ltr;
+  text-align: left;
+}
+
+.md-typeset img {
+  border-radius: 12px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .study-hero {
+    padding: 1.1rem;
+  }
+
+.md-typeset {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .grid.cards > ul > li {
+    transition: none;
+  }
+}
